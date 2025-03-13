@@ -1,1 +1,230 @@
-伊森的网站
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <style>
+        .hello{
+            color: #3498db;;
+        }
+        .insert{
+            margin-top: 50px;
+            padding: 10px;
+            border: 5px solid  rgba(9, 151, 104, 0.692);
+            width: 1000px;
+        }
+        .main{
+            margin-top: 50px;
+            padding: 10px;
+            border: 5px solid  rgba(29, 11, 194, 0.692);
+            width: 1000px;
+        }
+        .active{
+            color: rgb(218, 0, 0);
+            
+        }
+        label{
+            
+            margin-left: 10px;
+        }
+        button{
+            width: 100px;;
+        }
+        .content{
+            border: 2px solid rgb(32, 31, 27);
+            padding: 5px;
+     
+        }
+    </style>
+</head>
+<body>
+    <div class="main">
+    <div class="content"> 
+        <span class="bold" title="选择你的水果"><b>span</b> 你最喜欢的水果是? class=bold <b>span</b></span>
+        <ul>
+            <li title="">苹果</li>
+            <li title="">橘子</li>
+            <li title="">桃子</li>
+            <li title="">西瓜</li>
+        </ul>
+
+        <form action="/login" method="POST">
+            <input type="text" id="username" name="username" required placeholder="请输入账户">
+            <input type="password" id="password" name="password" required placeholder="请输入密码">
+            <button type="submit">登录</button>
+        </form>
+    </div>
+
+    <p>节点操作</p>
+    <button id="1" class="active" title="获取'橘子'的文本">查找节点</button>
+    <button id="2" class="active" title="获取<p>的文本">获取属性</button>
+    <button id="3" class="active" title="创建节点">创建节点</button>
+    <button id="4" class="active" title="包括子元素也被删除">删除remove</button>
+    <button id="5" class="active" title="如果绑定事件,事件不会被删除">删除detach</button>
+    <button id="6" title="">复制节点</button>
+    <button id="7" title="">替换节点</button>
+    <button id="8" title="">包裹节点</button>
+    <button id="9" title="">包裹节点</button>
+    <p>属性操作</p>
+    <div><button id="10" class="active" title="">获取属性</button><label for="">获取span的title属性</label></div>
+    <div><button id="10-1" class="active" title="">设置属性</button><label for="">把span的title属性改为"新标题"</label></div>
+    <div><button id="11" class="active" title="">删除属性</button><label for="">删除span的title</label></div>
+
+
+    <p>样式操作</p>
+    <div><button id="12" class="active" title="">获取样式</button><label for="">获取span标签的class</label></div>
+    <div><button id="12-1" class="active" title="">设置样式</button><label for="">把span的class改为thin</label></div>
+    <div><button id="13" class="active" title="">addClass</button><label for="">span的class增加一个another</label></div>
+    <div><button id="14" class="active" title="">removeClass</button><label for="">去掉another class</label></div>
+    <div><button id="15" class="active" title="">toggle</button><label for="">span元素隐藏,显示</label></div>
+    <div><button id="15-1" class="active" title="">toggleClass</button><label for="">span的class, tiggle</label></div>
+    <div><button id="16" class="active" title="">hasClass</button><label for="">span是否有class another? </label></div>
+    <div><button id="16-1" class="active" title="">css</button><label for="">操作css, 建议使用class来操作样式</label></div>
+    
+    <p>设置和获取 HTML、文本和值</p>
+    <button id="17" class="active" title="">html()</button>
+    <button id="18" class="active" title="">text()</button>
+    <button id="19" class="active" title="">val()</button>
+
+    <p>遍历节点</p>
+    <button id="20" title="">childen</button>
+    <button id="21" title="">next</button>
+    <button id="22" title="">prev</button>
+    <button id="23" title="">siblings</button>
+    <button id="24" title="">closest</button>
+    </div>
+    
+
+    <div class="insert">
+        <p>插入</p>
+    <p class="hello">我想说:</p>
+    <button id="a" title="插入到元素内部的最后一个">内部插入末尾append</button>
+    <button id="b" title="插入到元素外部的最后一个">外部插入末尾after</button>
+    
+    </div>
+    
+    <script>
+        $(document).ready(function(){
+            // html()
+            $("#17").click(function(){
+                var span_html = $("span").html();
+                alert(span_html)
+            });
+            // text()
+            $("#18").click(function(){
+                var span_text = $("span").text();
+                alert(span_text)
+            });
+            // css()
+            $("#16-1").click(function(){
+                $("span").css("color","red"); 
+                
+            });
+            
+            // val()
+            $("#19").click(function(){
+                var span_text = $("#username").val();
+                alert(span_text)
+            });
+
+            $("#1").click(function(){
+                var $li = $("ul li:eq(1)");
+                var li_text = $li.text();
+                alert(li_text);
+            });
+
+            $("#2").click(function(){
+                var $para = $("span");
+                var p_text = $para.text();
+                alert(p_text);
+            });
+
+            $("#3").click(function(){
+                var $li_1 = $("<li>Hello</li>");
+                var $li_2 = $("<li>Good bye</li>");
+                $('ul').append($li_1)
+                $('ul').append($li_2)
+                alert(p_text);
+            });
+
+
+            $("#4").click(function(){
+                $("ul li:eq(1)").remove();
+            });
+
+            $("#5").click(function(){
+                var $li = $("ul li:eq(1)").detach();
+            });
+            
+            // 获取属性
+            $("#10").click(function(){
+                var $para = $("span");
+                var p_text = $para.attr("title");
+                alert(p_text)
+            });
+
+            // 设置属性
+            $("#10-1").click(function(){
+                $("span").attr("title","新标题");
+            });
+
+            // 删除属性
+            $("#11").click(function(){
+                $("span").removeAttr("title");
+            });
+
+            // 获取样式
+            $("#12").click(function(){
+                var p_class = $("span").attr("class");
+                alert(`span的class为: ${p_class}`)
+            });
+            // 设置样式
+            $("#12-1").click(function(){
+                $("span").attr("class","thin");
+                alert(`span的class设置为-> thin`)
+            });
+
+            // 设置样式
+            $("#13").click(function(){
+                $("span").addClass("another");
+                
+            });
+
+            // 移除样式
+            $("#14").click(function(){
+                $("span").removeClass("another");
+
+                
+            });
+
+            // Toggle样式
+            $("#15").click(function(){
+                $("span").toggle("toggle");
+            });
+
+            // Toggle样式
+            $("#15-1").click(function(){
+                $("span").toggleClass("toggle");  
+            });
+
+            // hasClass
+            $("#16").click(function(){
+                var item = $("span").hasClass("another");
+                alert(`span是否有class another?\n${item}`)
+            });
+
+            $("#a").click(function(){
+                var $li_1 = $("<b>你好</b>");
+                $(".hello").append($li_1);
+            });
+
+
+            $("#b").click(function(){
+                var $li_1 = $("<b>你好</b>");
+                $(".hello").after($li_1);
+            });
+        });
+    </script>
+</body>
+</html>
