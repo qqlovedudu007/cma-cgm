@@ -1,57 +1,362 @@
+<!DOCTYPE html>
+<html lang="en">
 <head>
-   <meta charset="utf-8"/>
-<style>
-caption
-{
-	text-align: center;
-    color:#004f72;
-	padding-bottom:10px;
-	font-size: 45px;
-	background:white;
-	font-family: 微软雅黑
-}
-table {
-  font-family: Arial, Helvetica, sans-serif;
-  border-collapse: collapse;
-}
-table td, table th {
-  border: 1px solid #858585;
-  padding-right: 20px;
-  padding-left: 20px;
-  text-align:center;
-  font-size: 15px;
-  font-family: 微软雅黑
-}
-tr:nth-of-type(2n+1) {
-  background-color: #f2f2f2;
-}
-table tr:hover {background-color: #ddd;}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>达飞轮船</title>
 
-table th {
-  padding-top: 12px;
-  padding-bottom: 12px;
-  font-family: 微软雅黑;
-  font-weight: normal;
-  font-size:25px;
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <!-- <link rel="stylesheet" href="style.css"> -->
+    <style>
+        * {
+    box-sizing: border-box;
 }
-.me,.mb,.vc,.XW{
-	background:#4267A0;
-	color:white;
+.main {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
 }
-.in-advance{
-	color:#ff1100;
+body{
+    margin: 0px;
+    overflow: auto;
 }
-.last-line,.last-line td{
-	border:none;
+.footer {
+    height: 100px;
+    background-color: rgb(4, 36, 106);
+    text-align: center;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
+.active_li{
+    background-color: gainsboro;
+}
+.faq_content h1 {
+    padding-bottom:10px;
+    font-size: 24px;
+    margin-bottom: 0;
+    border-bottom: 1px solid #d6d5d5;
+}
+.faq_content span {
+    /* margin-left:50px; */
+    font-size: 12px;
+    color: grey;
+}
+.header{
+    height: 80px;
+    display: flex;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* 底部阴影 */
+    align-items: center; /* 垂直居中 */
+}
+.header img{
+    height: 50%;
+    display: block; 
+    padding-left: 20px;
+}
+.inner_content {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+
 }
 
-</style> 
+.content{
+    margin: 20px;
+    margin-bottom:100px;
+    padding: 15px;
+    box-shadow: 0px 0px 5px 3px rgba(0, 0, 0, 0.1);
+}
+.inner_content .button {
+    display: flex; /* 启用 flexbox 布局 */
+    border-bottom: 2px solid #e7e7e7;
+}
+.button div {
+    padding: 10px 20px;
+    user-select: none; 
+    font-size: 15px;
+    color: #051039;
+    font-family: Helvetica Neue,Helvetica,PingFang SC,Hiragino Sans GB,Microsoft YaHei,Arial,sans-serif;
+}
+.button div:hover{
+    cursor: pointer; 
+}
+.search{
+    display: flex; 
+    margin-top: 10px;
+    border-radius: 1px;
+    padding: 20px;
+    border: 1px solid #ebeef5
+}
+.search div{
+    padding: 5px;;
+}.search button:hover{
+    cursor: pointer; 
+}
+.search button{
+    background-color: #e20202;
+    color: white;
+    border-radius: 3px;
+    border: none;
+    font-size: 12px;
+    padding: 9px 22px;
+}
+.search .bkg{
+    font-size: 14px;
+    color:#2251ae;
+    font-weight: bold;
+}
 
+.list{
+    margin-top: 10px;
+    border: 1px solid #ebeef5;
+    justify-content: flex-start;
+}
+.list .button_list{
+    margin: 20px;
+}
+.list button:hover{
+    cursor: pointer;
+}
+.list button{
+    background-color: #e20202;
+    color: white;
+    border-radius: 3px;
+    border: none;
+    font-size: 12px;
+    padding: 9px 15px;
+    user-select: none;
+}
+.content .active{
+    color: #051039;
+    font-weight: bold;
+    border-bottom: 2px solid #e20202;
+}
+textarea{
+    font-family: sans-serif;
+    font-size: 12px;
+    color: #2251ae;
+    border: 1px solid rgb(228, 228, 228);
+    border-radius: 3px;
+    
+}
+textarea:focus {
+    border: 1px solid #e20202;
+    outline: none;
+    
+}
 
-<table> 
-<caption>
-	伊森的网站
-</caption> 
+.search .upload{
+    background-color: white;
+    border: 1px solid #e20202;
+    color: #e20202;
+    
+}
+.hide{
+    display: none !important;
+}
+.faq_content {
+    flex: 9;
+    max-height: 600px;
+    overflow: auto;
+}
+.faq {
+    display: flex;
+    flex-direction: row;
+}
+.faq li{
+    padding: 2px 10px;
+}
+.faq .item1{
+    border: 1px solid rgb(223, 223, 223);
+    background-color: rgb(250, 250, 250);
+    flex: 1;
+    min-height: 600px;
+    overflow: auto;
+    font-size: 15px;
+}
 
-</table>
+.faq .item2{
+    border: 1px solid rgb(223, 223, 223);
+    background-color: rgb(250, 250, 250);
+    flex: 1;
+    font-size: 15px;
+}
+.faq li:hover{
+    cursor: pointer;
+} 
+.faq *{
+    user-select: none;
+}
+ul {
+    list-style-type: none; 
+}
+.item1 > ul:first-of-type{
+    padding: 0px;
+}
+.item2 > ul:first-of-type{
+    padding: 0px;
+}
+.faq div{
+    padding: 9px 20px;
+    margin: 0;
+}
+
+    </style>
 </head>
+<body>
+    <div class="main">
+        <div class="header">
+            <img src="https://www.cma-cgm.com.cn/contact/static/img/logo-mycmacgmchina.5a0e65b0.svg" alt="">
+        </div>
+
+        <div class="content">
+            <div class="inner_content"><div class="button">
+                <div class="active">Search by Bkg</div>
+                <div>Search by Customer</div>
+                <div>Customer Contact</div>
+                <div>FAQ library</div>
+            </div>
+            <div class="to_hide search">
+                <div class="bkg">BK No</div>
+                <div><textarea placeholder="You may input multiple booking numbers or import excel template to query, like AACL009028;SHZ2753123" name="" id="" cols="30" rows="10" style="width: 368px;height: 60px;padding-top: 5px;padding-bottom: 5px;padding-left: 15px;padding-right: 15px;"></textarea></div>
+                <div><button>Search</button></div>
+                <div><button class="upload">Upload</button></div>
+            </div>
+            <div class="to_hide list">
+                <div class="button_list">                
+                    <button>Download</button>
+                    <button>Treatment</button>
+                </div>
+
+            </div>
+            <div class="faq hide">
+                <div class="item1">
+                    <ul>
+                        <li class="li_header">01 Overwiew</li>
+                        <ul>
+                            <li>Intruduction</li>
+                            <li>Central China</li>
+                            <li>North China</li>
+                            <li>South China</li>
+                        </ul>
+                        <li class="li_header">02 Booking</li>
+                        <li class="li_header">03 Equipmment</li>
+                    </ul>
+                </div>
+                <div class="item2">
+                    <ul>
+                        <li>Qingdao FAQ</li>
+                        <li>Tianjin FAQ</li>
+                        <li>Dalian FAQ</li>
+                    </ul>
+                </div>
+                <div class="faq_content">
+                    <h1>QingDao FAQ</h1>
+                    <span>Monday, 6 May 2024 16:33</span>
+                    <h2>Qingdao Overview</h2>
+                    <p>关于青岛及北方的操作模式，最大的特点在于“场站“的概念。  <br>
+
+                        场站集合了堆场和港区的部分特点：客人会在场站提空箱，在装货结束后，重箱返还至场站，由场站分配堆位并且负责具体进港的事宜, 青岛由场站安排集港，进港后码头发送运抵报告，客户安排报关。  <br>
+                        
+                        冻柜重箱直接入港，不再返回场站。  <br>
+                        
+                         
+                        
+                        东也会和场站有协议或者商讨变更截止时间/换船等操作。所以，场站对于北方的客人来说，是个非常重要的联系窗口. </p>
+                        <p>1. Situation： 客户进港晚了，申请保箱，申请加载 </p>
+                        <p>Solution： 
+
+                            青岛只看截港时间，通常不管截关，以云港通的时间为准。 <br>
+                            
+                            晚于截港时间，闸口会关闭，货会回到场站。  <br>
+                            
+                            CMA自己的船，客服同事内部发给CR团队和OP团队进行申请。可能性更大。  <br>
+                            
+                            qgd.cargoreadiness <qgd.cargoreadiness@cma-cgm.com>;   <br>
+                            
+                            qgd.terminal <qgd.terminal@cma-cgm.com>  <br>
+                            
+                            Partner的船，一般让客户自行找场站/堆场，汇总之后找partner的配载。看会不会统一放加急点。  <br>
+                            
+                             
+                            
+                             
+                            
+                            Apply TERMINAL CY CUT-OFF TIME    <br>   
+                            
+                            check 云港通(terminal website) for vessel operation plan details;  <br>
+                            
+                            for late gate-in, pls ask customers to apply with their depots. </p>
+                            <p>Situation： 客户想申请早提  <br>
+
+ 
+
+                                Solution：  <br>
+                                
+                                BP assign好的情况下，跟Trade Lu Lucy 进行申请，批复后联系LI Evan <QGD.EVLI@cma-cgm.com>;   <br>
+                                
+                                qgd.logistics <qgd.logistics@cma-cgm.com> 进行open EIR。  <br>
+                                
+                                 
+                                
+                                 
+                                
+                                 
+                                
+                                Situation： 客户询问怎么操作异提  <br>
+                                
+                                 
+                                
+                                Solution： 
+                                
+                                客户在亿通直接申请异地提箱，青岛箱管直接approve即可。  <br>
+                                
+                                亿通的操作手册上面有一些内容。 </p>
+                </div>
+            </div></div>
+            
+        </div>
+
+
+
+        <div class="footer">
+
+        </div>
+
+    </div>
+<script>
+    $(document).ready(function(){
+        $(".button div").click(function(){
+            $(".button div").removeClass("active")
+            var text = $(this).addClass("active")
+            
+            // 显示FAQ
+            if ($(this).text() === "FAQ library") {
+                $(".faq").removeClass("hide")
+                $(".to_hide").addClass("hide");
+            }   
+            // 隐藏FAQ
+            else if ($(this).text() === "Search by Bkg") {
+                $(".faq").addClass("hide")
+                $(".to_hide").removeClass("hide");
+            }  
+
+        })
+
+        $(".faq .item1 li").click(function(){
+            $(".faq .item1 li").removeClass("active_li")
+            $(this).addClass("active_li")
+        })
+        
+        $(".faq .item2 li").click(function(){
+            $(".faq .item2 li").removeClass("active_li")
+            $(this).addClass("active_li")
+        })
+        $(".li_header").click(function(){
+            $(".li_header li").addClass("hide")
+        })
+        
+    })
+</script>
+</body>
+</html>
